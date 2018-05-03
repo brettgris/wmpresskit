@@ -1,0 +1,262 @@
+@import './variables.scss';
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+a{
+	cursor: pointer;
+	text-decoration: none;
+}
+
+li{
+	list-style: none;
+}
+
+.fullvideo {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	z-index: 0;
+
+	video{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		// min-width: 100%;
+		// min-height: 100%;
+
+		// width: auto;
+		// height: auto;
+
+		// width: 100%;
+		// height: 100%;
+		z-index: 1;
+		transform: translateX(-50%) translateY(-50%);
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+}
+
+.board-wrapper{
+	width: 100%;
+	min-height: 100%;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0; bottom: 0;
+	left: 0; right: 0;
+	z-index: $board-z;
+	background-image: url(~@/assets/images/bg_wall.jpg);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	overflow: hidden;
+
+	@include minheight(){
+		display: block;
+		position: absolute;
+		overflow-y: auto;
+		//top: 100px;
+	}
+
+	@include noboard(){
+		background: $white;
+		display: block;
+		overflow: auto;
+		position: relative;
+	}
+
+	&>div{
+		position: relative;
+		width: $board-width;
+
+		@include minheight(){
+			margin: auto;
+			padding-top: 50px;
+			padding-bottom: 50px;
+		}
+
+		@include board(){
+			width: 80%;
+		}
+
+		// @include tablet(){
+		// 	width: 80%;
+		// }
+
+		@include noboard(){
+			width: 100%;
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+
+		.board{
+			padding-top: $board-ratio * 100%;
+			position: relative;
+			background-image: url(~@/assets/images/bg_corkboard.jpg);
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+
+			@include noboard(){
+				padding-top: 0;
+				background: none !important;
+			}
+
+			.content{
+				position: absolute;
+				top: 0; bottom: 0;
+				left: 0; right: 0;
+				width: 100%;
+				height: 100%;
+				box-shadow: $box-shadow;
+
+				@include minheight(){
+					//display: none;
+				}
+
+				@include noboard(){
+					box-shadow: none;
+					position: relative;
+					height: inherit;
+				}
+
+				.folder{
+					@include noboard(){
+						height: auto !important;
+						left: 0 !important;
+						top: 0 !important;
+						transform: none !important;
+						width: 80% !important;
+						position: relative !important;
+						background: none !important;
+						margin: 40px auto 0 auto;
+					}
+
+					.case{
+						@include onlyboard(){
+							padding-top: 0 !important;
+						}
+
+						@include noboard(){
+							left: 0 !important;
+							top: 0 !important;
+							width: 100% !important;
+							margin: auto;
+							position: relative !important;
+							height: auto !important;
+						}
+
+						.videobtn{
+							background-size: contain !important;
+						}
+					}
+
+					.hm{
+						@include noboard(){
+							display: none !important;
+						}
+					}
+				}
+
+				.paper{
+					@include noboard(){
+						background: $white !important;
+						width: 100% !important;
+						height: auto !important;
+						left: 0 !important;
+						top: 0 !important;
+						position: relative !important;
+						margin: 40px auto 0 auto;
+					}
+
+					.pr{
+						@include noboard(){
+							position: static !important;
+							width: 90% !important;
+							height: auto !important;
+							margin:auto;
+							background-size: contain !important;
+							margin-bottom: 20px;
+						}
+					}
+
+					.ipt{
+						@include onlyboard(){
+							padding-top: 0 !important;
+						}
+					}
+
+
+				}
+			}
+		}
+	}
+}
+
+.pictures{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 11;
+	pointer-events: none;
+
+	@include noboard(){
+		display: none;
+	}
+}
+
+.menu-list{
+	@include noboard(){
+		position: relative !important;
+	}
+	h2{
+		margin: auto;
+		text-align: center;
+		position: relative !important;
+		background-size: contain !important;
+	}
+
+	ul{
+		li{
+			width: 100%;
+			position: relative;
+
+			a{
+				display: block;
+				position: relative !important;
+				background-size: contain !important;
+
+				span{
+					display: block;
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					top: 0;
+					left: 0;
+					visibility: hidden;
+					background-repeat: no-repeat;
+					background-size: contain;
+					background-position: center center;
+				}
+			}
+
+			@media (pointer: fine) {
+				&:hover{
+
+					span{
+						visibility: visible;
+					}
+				}
+			}
+		}
+	}
+}
